@@ -111,6 +111,3 @@ npm run dev
 - **Animations:** Custom CSS & Tailwind Transitions
 
 ---
-
-## 📄 License
-MIT License - Created with ❤️ by Vikas Padmashali
