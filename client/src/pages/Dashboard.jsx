@@ -14,6 +14,8 @@ const Dashboard = () => {
     const [newTaskTitle, setNewTaskTitle] = useState('');
     const [newTaskCategory, setNewTaskCategory] = useState('Custom');
     const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+
     useEffect(() => {
         fetchTasks();
     }, []);
