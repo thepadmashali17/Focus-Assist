@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { userAPI } from '../services/api';
 
+const SUCCESS_SOUND_URL = 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3';
+const TIMER_COMPLETE_SOUND_URL = 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3';
+
+
 const Focus = () => {
     const navigate = useNavigate();
     const { updateUser } = useAuth();
@@ -34,8 +38,18 @@ const Focus = () => {
         setIsCompleted(true);
 
         try {
+            // Play timer completion sound immediately
+            const timerAudio = new Audio(TIMER_COMPLETE_SOUND_URL);
+            timerAudio.play().catch(e => console.log('Audio play failed:', e));
+
             const response = await userAPI.completeFocus();
             updateUser(response.data.user);
+
+            // Play success sound after API call
+            setTimeout(() => {
+                const successAudio = new Audio(SUCCESS_SOUND_URL);
+                successAudio.play().catch(e => console.log('Audio play failed:', e));
+            }, 500);
         } catch (error) {
             console.error('Error completing focus session:', error);
         }

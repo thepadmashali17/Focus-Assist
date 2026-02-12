@@ -1,7 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { tasksAPI } from '../services/api';
+
+const TASK_COMPLETE_SOUND = 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3';
+const LEVEL_UP_SOUND = 'https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3';
+
 
 const Dashboard = () => {
     const { user, logout, updateUser } = useAuth();
@@ -10,11 +14,20 @@ const Dashboard = () => {
     const [newTaskTitle, setNewTaskTitle] = useState('');
     const [newTaskCategory, setNewTaskCategory] = useState('Custom');
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState('');
-
     useEffect(() => {
         fetchTasks();
     }, []);
+
+    // Effect for Level Up detection
+    const prevLevel = useRef(user?.level || 1);
+    useEffect(() => {
+        if (user?.level > prevLevel.current) {
+            const audio = new Audio(LEVEL_UP_SOUND);
+            audio.play().catch(e => console.log('Audio play failed:', e));
+            showMessage(`LEVEL UP! You are now Lv. ${user.level} 👑`);
+            prevLevel.current = user.level;
+        }
+    }, [user?.level]);
 
     const fetchTasks = async () => {
         try {
@@ -57,6 +70,10 @@ const Dashboard = () => {
 
             // Update user stats
             updateUser(response.data.user);
+
+            // Play checkmark sound
+            const audio = new Audio(TASK_COMPLETE_SOUND);
+            audio.play().catch(e => console.log('Audio play failed:', e));
 
             showMessage(`+${response.data.xpGained} XP! 🎉`);
         } catch (error) {
@@ -205,8 +222,8 @@ const Dashboard = () => {
                                 <div
                                     key={task._id}
                                     className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${task.completed
-                                            ? 'bg-slate-700/30 border-slate-600'
-                                            : 'bg-slate-700/50 border-slate-600 hover:border-primary'
+                                        ? 'bg-slate-700/30 border-slate-600'
+                                        : 'bg-slate-700/50 border-slate-600 hover:border-primary'
                                         }`}
                                 >
                                     <input

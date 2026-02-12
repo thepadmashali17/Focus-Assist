@@ -1,6 +1,8 @@
 import express from 'express';
 import User from '../models/User.js';
 import authMiddleware from '../middleware/auth.js';
+import { sendLevelUpEmail } from '../utils/email.js';
+
 
 const router = express.Router();
 
@@ -59,8 +61,14 @@ router.post('/focus-complete', async (req, res) => {
         }
 
         // Award 30 XP for completing a focus session
+        const levelBefore = user.level;
         const xpGained = 30;
         user.addXP(xpGained);
+
+        if (user.level > levelBefore) {
+            sendLevelUpEmail(user.email, user.name, user.level).catch(console.error);
+        }
+
         await user.save();
 
         res.json({

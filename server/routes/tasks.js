@@ -2,6 +2,8 @@ import express from 'express';
 import Task from '../models/Task.js';
 import User from '../models/User.js';
 import authMiddleware from '../middleware/auth.js';
+import { sendLevelUpEmail } from '../utils/email.js';
+
 
 const router = express.Router();
 
@@ -110,6 +112,7 @@ router.patch('/:id', async (req, res) => {
 
         // Award XP to user
         const user = await User.findById(req.user._id);
+        const levelBefore = user.level;
         const xpGained = 20;
         user.addXP(xpGained);
 
@@ -133,6 +136,11 @@ router.patch('/:id', async (req, res) => {
         if (allCompleted && allTasks.length > 0) {
             bonusXP = 50;
             user.addXP(bonusXP);
+        }
+
+        const levelAfter = user.level;
+        if (levelAfter > levelBefore) {
+            sendLevelUpEmail(user.email, user.name, levelAfter).catch(console.error);
         }
 
         await user.save();
