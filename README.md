@@ -1,10 +1,10 @@
-# 🎯 Solo-Leveler - Gamified Productivity App
+# Solo-Leveler - Gamified Productivity App
 
 A full-stack mobile-first Progressive Web App inspired by Solo Leveling's daily quest system. Level up your productivity with XP, streaks, and focus sessions!
 
 ---
 
-## 🌐 Live Application
+## Live Application
 
 - **Frontend (App):** [https://focus-assist.vercel.app](https://focus-assist.vercel.app)
 - **Backend (API):** [https://focus-assist.onrender.com](https://focus-assist.onrender.com)
@@ -12,19 +12,19 @@ A full-stack mobile-first Progressive Web App inspired by Solo Leveling's daily 
 
 ---
 
-## 🚀 Features
+## Features
 
-- ✅ **Authentication System** - JWT-based secure login/register
-- ✅ **Daily Quest Management** - Create, complete, and track daily tasks
-- ✅ **XP & Leveling System** - Earn XP for completing tasks and level up
-- ✅ **Streak Tracking** - Maintain daily login streaks
-- ✅ **Focus Mode** - 25-minute Pomodoro timer with XP rewards
-- ✅ **Dark Minimal UI** - Beautiful mobile-first design with neon accents
-- ✅ **PWA Ready** - Installable on mobile devices
+- **Authentication System** - JWT-based secure login/register
+- **Daily Quest Management** - Create, complete, and track daily tasks
+- **XP & Leveling System** - Earn XP for completing tasks and level up
+- **Streak Tracking** - Maintain daily login streaks
+- **Focus Mode** - 25-minute Pomodoro timer with XP rewards
+- **Dark Minimal UI** - Beautiful mobile-first design with neon accents
+- **PWA Ready** - Installable on mobile devices
 
 ---
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 **Frontend:** React 18, Vite, Tailwind CSS, React Router, Axios  
 **Backend:** Node.js, Express, MongoDB (Mongoose), JWT, bcrypt  
@@ -32,7 +32,7 @@ A full-stack mobile-first Progressive Web App inspired by Solo Leveling's daily 
 
 ---
 
-## 📱 Mobile Installation (PWA)
+## Mobile Installation (PWA)
 
 You can use Solo-Leveler as a native app on your phone:
 1.  Open [https://focus-assist.vercel.app](https://focus-assist.vercel.app) in your mobile browser (Chrome/Safari).
@@ -42,7 +42,7 @@ You can use Solo-Leveler as a native app on your phone:
 
 ---
 
-## 🛠️ Local Installation & Setup
+## Local Installation & Setup
 
 ### Prerequisites
 - Node.js (v18+)
@@ -76,7 +76,7 @@ npm run dev
 
 ---
 
-## 📊 Game Mechanics
+## Game Mechanics
 
 - **Task Completion:** +20 XP
 - **Daily Streak Bonus:** +50 XP (Complete all daily tasks)
@@ -85,7 +85,7 @@ npm run dev
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Auth
 - `POST /api/auth/register`
@@ -103,7 +103,7 @@ npm run dev
 
 ---
 
-## 🎨 Design System
+## Design System
 
 - **Background:** Dark Slate (`#0f172a`)
 - **Primary:** Indigo (`#6366f1`)
